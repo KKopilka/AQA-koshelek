@@ -55,7 +55,7 @@ npm init playwright@latest
 
 ## Установка и запуск проекта
 
-Склонируюте репозиторий:
+Склонируйте репозиторий:
 ```bash
 git clone https://github.com/KKopilka/AQA-koshelek.git
 ```
