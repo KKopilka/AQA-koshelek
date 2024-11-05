@@ -15,10 +15,10 @@ exports.Authorization = class Authorization {
     this.btnP2P = page.locator('#app-header a').filter({ hasText: 'P2P' });
     this.btnInternationalExchange = page.locator('#app-header a').filter({ hasText: 'Международный обмен' });
     // this.inpUsername = page.locator('#input-1728');
-    this.inpUsername = page.locator('(//div[contains(@class, "v-text-field__slot")]//input)[1]');
+    this.inpUsername = page.getByLabel('Имя пользователя');
     this.inpEmail = page.locator('#username');
     this.inpPassword = page.locator('#new-password');
-    this.inpReferralCode = page.locator('input[specialtoken="k-text-field-primary"][type="text"]').first();
+    this.inpReferralCode = page.getByLabel('Реферальный код');
     this.chkbxAgreement = page.locator('#input-3250');
     this.btnNext = page.getByRole('button', { name: 'Далее' });
     this.btnOpenPassword = page.getByLabel('preview open');
@@ -70,24 +70,30 @@ exports.Authorization = class Authorization {
 
   async containsInvalidCharacterUsername() {
     await this.inpUsername.fill('user!name');
-    const errorMessage = this.page.locator('span.k-text', { hasText: 'Введены недопустимые символы: !' });
+    const errorMessage = this.page.locator('span.k-text', { 
+      hasText: 'Введены недопустимые символы: !' 
+    });
     await expect(errorMessage).toBeVisible();
   }
 
   async incorrectEmailFormat() {
     await this.inpEmail.fill('userexample.com');
     await this.btnNext.click();
-    await expect(page.locator('span.k-text', { hasText: 'Формат e-mail: username@test.ru' })).toBeVisible();
+    await expect(this.page.locator('span.k-text', { 
+      hasText: 'Формат e-mail: username@test.ru' 
+    })).toBeVisible();
 
     await this.inpEmail.fill('user@wrongdomain');
     await this.btnNext.click();
-    await expect(page.locator('span.k-text', { hasText: 'Формат e-mail: username@test.ru' })).toBeVisible();
+    await expect(this.page.locator('span.k-text', { 
+      hasText: 'Формат e-mail: username@test.ru' 
+    })).toBeVisible();
   }
 
   async shortPassword() {
     await this.inpPassword.fill('abcabc');
     await this.btnNext.click();
-    await expect(page.locator('span.k-text', { 
+    await expect(this.page.locator('span.k-text', { 
       hasText: 'Пароль должен содержать минимум 8 символов' 
     })).toBeVisible();
   }
@@ -95,7 +101,7 @@ exports.Authorization = class Authorization {
   async longPassword() {
     await this.inpPassword.fill('a'.repeat(65));
     await this.btnNext.click();
-    await expect(page.locator('span.k-text', { 
+    await expect(this.page.locator('span.k-text', { 
       hasText: 'Превышен лимит символов: 64 максимум' 
     })).toBeVisible();  
   }
@@ -103,7 +109,7 @@ exports.Authorization = class Authorization {
   async lowercasePassword() {
     await this.inpPassword.fill('abba2233445566');
     await this.btnNext.click();
-    await expect(page.locator('span.k-text', { 
+    await expect(this.page.locator('span.k-text', { 
       hasText: 'Пароль должен содержать от 8 до 64 символов, включая заглавные буквы и цифры' 
     })).toBeVisible();  
   }
@@ -111,16 +117,16 @@ exports.Authorization = class Authorization {
   async uppercasePassword() {
     await this.inpPassword.fill('ABBA2233445566');
     await this.btnNext.click();
-    await expect(page.locator('span.k-text', { 
+    await expect(this.page.locator('span.k-text', { 
       hasText: 'Пароль должен содержать от 8 до 64 символов, включая заглавные буквы и цифры' 
     })).toBeVisible();  
   }
 
   async incorrectReferralCodeFormat() {
     await this.inpReferralCode.fill('---');
-    console.log(this.btnNext.isDisabled());
-    // await expect(page.locator('span.k-text', { 
-    //   hasText: 'Пароль должен содержать от 8 до 64 символов, включая заглавные буквы и цифры' 
-    // })).toBeVisible();  
+    await this.btnNext.isDisabled();
+    await expect(this.page.locator('span.k-text', { 
+      hasText: 'Неверный формат ссылки' 
+    })).toBeVisible();  
   }
 }

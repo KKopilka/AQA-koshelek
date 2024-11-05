@@ -49,7 +49,7 @@ test.describe('Негативные тесты для страницы реги�
     await authPage.uppercasePassword();
   });
 
-  test('10. ', async () => {
+  test('11. Неверный формат реферального кода', async () => {
     await authPage.incorrectReferralCodeFormat();
   });
   
