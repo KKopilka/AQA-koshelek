@@ -17,7 +17,7 @@
 
 Необходимо перейти по [ссылке](https://nodejs.org/en) и скачать установщик Node.js
 
-  <img src="pic/image.png" alt="Описание изображения" width="500"/>
+  <img src="pic/image.png" alt="Установка Node.js" width="500"/>
 
 После завершения процесса установки необходимо удостовериться в том, что Node.js был установлен. Для этого необходимо:
 
@@ -34,23 +34,23 @@ npm init playwright@latest
 ```
 - Выбрать JavaScript, как ЯП для автотестов
 
-<img src="pic/image-1.png" alt="Описание изображения" width="500"/>
+<img src="pic/image-1.png" alt="Установка Playwright" width="500"/>
 
 - Ввести имя (путь) каталога, в котором будут храниться Е2Е тесты
 
-<img src="pic/image-2.png" alt="Описание изображения" width="500"/>
+<img src="pic/image-2.png" alt="Установка Playwright" width="500"/>
 
 - Отказаться от создания файла с "github actions"
 
-<img src="pic/image-3.png" alt="Описание изображения" width="500"/>
+<img src="pic/image-3.png" alt="Установка Playwright" width="500"/>
 
 - Согласиться на установку браузеров
 
-<img src="pic/image-4.png" alt="Описание изображения" width="500"/>
+<img src="pic/image-4.png" alt="Установка Playwright" width="500"/>
 
 - По завершению распаковки и установки пакета будет выведено сообщение с перечислением терминальных команд доступных в директории проекта и о том, что были созданы примеры тестов и конфигурация PW
 
-<img src="pic/image-5.png" alt="Описание изображения" width="500"/>
+<img src="pic/image-5.png" alt="Установка Playwright" width="500"/>
 
 ## Установка и запуск проекта
 
